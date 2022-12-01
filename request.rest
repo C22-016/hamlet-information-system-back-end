@@ -1,0 +1,87 @@
+// Create a new user
+POST http://localhost:5000/users
+Content-Type: application/json
+
+{
+      "name": "Admin Staf",
+      "email": "staf@gmail.com",
+      "password": "123456",
+      "confPassword": "123456",
+      "role": "staf",
+      "image": "profile.jpg"
+}
+
+###
+// Get all user
+GET http://localhost:5000/users
+
+###
+// Get single user
+GET http://localhost:5000/users/f87a0d32-93cc-4540-9a87-a82cfe951829
+
+###
+// Updated user
+PATCH http://localhost:5000/users/e95416b3-913b-4b9f-9b9d-71d186412d94
+Content-Type: application/json
+
+{
+      "name": "Jhon Doe Updated",
+      "email": "jhon@gmail.com",
+      "password": "",
+      "confPassword": "",
+      "role": "user"
+}
+
+###
+// Deleted user
+DELETE http://localhost:5000/users/f87a0d32-93cc-4540-9a87-a82cfe951829
+
+###
+// Login user
+POST http://localhost:5000/login
+Content-Type: application/json
+
+{
+      "email": "admin@gmail.com",
+      "password": "123456"
+}
+
+###
+// Get info user Login
+GET http://localhost:5000/me
+
+###
+// Logout user
+DELETE http://localhost:5000/logout
+
+###
+// Created archive
+POST http://localhost:5000/archives
+Content-Type: application/json
+
+{
+      "name": "Data Kelurahan Admin",
+      "link": "https://drive.google.com/data-kelurahan"
+}
+
+###
+// Get all Archive
+GET http://localhost:5000/archives
+
+###
+// Get single Archive
+GET http://localhost:5000/archives/0fbffde2-6699-4247-bd58-44c4d18fab03
+
+###
+// Updated archive
+PATCH http://localhost:5000/archives/7c1fb7a2-8eab-4c5d-b057-f807f8081cf2
+Content-Type: application/json
+
+{
+      "name": "Data Kelurahan Admin Update 2",
+      "link": "https://drive.google.com/data-kelurahan"
+}
+
+###
+// Deleted archive
+DELETE http://localhost:5000/archives/f87275a8-bd0a-4f03-99a5-9d4f5d472fd0
