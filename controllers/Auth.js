@@ -14,10 +14,9 @@ export const Login = async (req, res) => {
   if (!match) return res.status(400).json({ msg: 'Password yang dimasukan salah!' });
 
   req.session.userId = user.uuid;
-  const { uuid } = user;
-  const { name } = user;
-  const { email } = user;
-  const { role } = user;
+  const {
+    uuid, name, email, role,
+  } = user;
   res.status(200).json({
     uuid, name, email, role,
   });
