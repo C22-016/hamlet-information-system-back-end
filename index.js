@@ -13,10 +13,11 @@ import db from './config/Database';
 import UserRoute from './routes/UserRoute';
 import ArchiveRoute from './routes/ArchiveRoute';
 import AuthRoute from './routes/AuthRoute';
+import BroadcastRoute from './routes/BroadcastRoute';
 
 /** ********************************************************
  * User Model use for create defaultuser
- * You can disable this if the user already exists in the database
+ * You can disable if admin account already exists in the database
  * */
 import defaultUser from './config/defaultUser';
 import Users from './models/UserModel';
@@ -52,6 +53,7 @@ app.use(express.static('public'));
 app.use(UserRoute);
 app.use(ArchiveRoute);
 app.use(AuthRoute);
+app.use(BroadcastRoute);
 
 /** Code for created table session */
 // store.sync();
@@ -63,7 +65,7 @@ db.sync()
 
 /** ******************************************************************
  * Create Default User { user: admin , password: 123456}
- * Disable this code if the admin is already available in the database.
+ * Disable this code if admin account is already available in the database.
  * */
 
 // Users.create(defaultUser)
