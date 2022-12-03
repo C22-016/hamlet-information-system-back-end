@@ -1,3 +1,4 @@
+import { nanoid } from 'nanoid';
 import { Sequelize } from 'sequelize';
 import db from '../config/Database';
 
@@ -6,7 +7,8 @@ const { DataTypes } = Sequelize;
 const Broadcast = db.define('broadcast', {
   broadcast_id: {
     type: DataTypes.STRING,
-    defaultValue: DataTypes.UUIDV4,
+    primaryKey: true,
+    defaultValue: `notif-${nanoid(9)}`,
     allowNull: false,
     validate: {
       notEmpty: true,
@@ -21,7 +23,7 @@ const Broadcast = db.define('broadcast', {
     },
   },
   content: {
-    type: DataTypes.INTEGER,
+    type: DataTypes.STRING,
     allowNull: false,
     validate: {
       notEmpty: true,
@@ -36,6 +38,8 @@ const Broadcast = db.define('broadcast', {
   },
 }, {
   freezeTableName: true,
+  timestamps: true,
+  updatedAt: false,
 });
 
 export default Broadcast;
