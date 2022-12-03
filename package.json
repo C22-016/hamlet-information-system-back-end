@@ -19,6 +19,7 @@
     "express-fileupload": "^1.4.0",
     "express-session": "^1.17.3",
     "mysql2": "^2.3.3",
+    "nanoid": "^4.0.0",
     "sequelize": "^6.25.8"
   },
   "devDependencies": {
