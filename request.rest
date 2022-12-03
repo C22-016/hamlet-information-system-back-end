@@ -1,9 +1,28 @@
+// Login user
+POST http://localhost:5000/login
+Content-Type: application/json
+
+{
+      "email": "admin@gmail.com",
+      "password": "123456"
+}
+
+###
+// Get info user Login
+GET http://localhost:5000/me
+
+###
+// Logout user
+DELETE http://localhost:5000/logout
+
+
+###
 // Create a new user
 POST http://localhost:5000/users
 Content-Type: application/json
 
 {
-      "name": "Admin Staf",
+      "name": "staf",
       "email": "staf@gmail.com",
       "password": "123456",
       "confPassword": "123456",
@@ -36,23 +55,6 @@ Content-Type: application/json
 // Deleted user
 DELETE http://localhost:5000/users/f87a0d32-93cc-4540-9a87-a82cfe951829
 
-###
-// Login user
-POST http://localhost:5000/login
-Content-Type: application/json
-
-{
-      "email": "admin@gmail.com",
-      "password": "123456"
-}
-
-###
-// Get info user Login
-GET http://localhost:5000/me
-
-###
-// Logout user
-DELETE http://localhost:5000/logout
 
 ###
 // Created archive
@@ -85,3 +87,21 @@ Content-Type: application/json
 ###
 // Deleted archive
 DELETE http://localhost:5000/archives/f87275a8-bd0a-4f03-99a5-9d4f5d472fd0
+
+###
+// Create Broadcast
+POST http://localhost:5000/broadcast
+Content-Type: application/json
+
+{
+      "title": "Kerja Bakti",
+      "content": "Jangan Lupa untuk kegiatan kerja bakti esok hari"
+}
+
+###
+// Get all Broadcast
+GET http://localhost:5000/broadcast
+
+###
+// Delete all Broadcast
+DELETE http://localhost:5000/broadcast
