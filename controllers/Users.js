@@ -1,8 +1,10 @@
 /* eslint-disable consistent-return */
+// import bcrypt from 'bcrypt';
+
 import argon2 from 'argon2';
 import path from 'path';
 import fs from 'fs';
-import User from '../models/UserModel';
+import User from '../models/UserModel.js';
 
 export const getUsers = async (req, res) => {
   try {
@@ -54,6 +56,7 @@ export const createUser = async (req, res) => {
   file.mv(`./public/profiles/${fileName}`, async (err) => {
     if (err) return res.status(500).json({ msg: err.message });
 
+    // const hashPassword = await bcrypt.hash(password, 12);
     const hashPassword = await argon2.hash(password);
     try {
       await User.create({
@@ -112,6 +115,7 @@ export const updateUser = async (req, res) => {
   if (password === '' || password === null) {
     hashPassword = user.password;
   } else {
+    // hashPassword = await bcrypt.hash(password, 12);
     hashPassword = await argon2.hash(password);
   }
   if (password !== confPassword) return res.status(400).json({ msg: 'Kata Sandi dan Konfirmasi Kata Sandi tidak cocok!' });

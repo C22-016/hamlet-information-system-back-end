@@ -1,6 +1,6 @@
 import { nanoid } from 'nanoid';
 import { Sequelize } from 'sequelize';
-import db from '../config/Database';
+import db from '../config/Database.js';
 
 const { DataTypes } = Sequelize;
 

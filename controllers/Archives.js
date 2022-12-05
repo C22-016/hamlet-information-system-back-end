@@ -1,8 +1,9 @@
 /* eslint-disable consistent-return */
+
 import dotenv from 'dotenv';
 import { Op } from 'sequelize';
-import Archive from '../models/ArchiveModel';
-import User from '../models/UserModel';
+import Archive from '../models/ArchiveModel.js';
+import User from '../models/UserModel.js';
 
 dotenv.config();
 

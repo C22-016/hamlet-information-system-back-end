@@ -1,12 +1,6 @@
 import express from 'express';
-
-import {
-  getBroadcast,
-  createBroadcast,
-  deleteAllBroadcast,
-} from '../controllers/Broadcast';
-
-import { verifyUser, adminAndStafOnly } from '../middleware/AuthUser';
+import { getBroadcast, createBroadcast, deleteAllBroadcast } from '../controllers/Broadcast.js';
+import { verifyUser, adminAndStafOnly } from '../middleware/AuthUser.js';
 
 const router = express.Router();
 

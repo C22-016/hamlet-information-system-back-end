@@ -1,7 +1,5 @@
-/* eslint-disable import/prefer-default-export */
-
 import dotenv from 'dotenv';
-import Broadcast from '../models/BroadcastModel';
+import Broadcast from '../models/BroadcastModel.js';
 
 dotenv.config();
 

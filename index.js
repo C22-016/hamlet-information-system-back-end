@@ -7,13 +7,13 @@ import cors from 'cors';
 import session from 'express-session';
 import dotenv from 'dotenv';
 import SequelizeStore from 'connect-session-sequelize';
-import db from './config/Database';
+import db from './config/Database.js';
 
 /** route */
-import UserRoute from './routes/UserRoute';
-import ArchiveRoute from './routes/ArchiveRoute';
-import AuthRoute from './routes/AuthRoute';
-import BroadcastRoute from './routes/BroadcastRoute';
+import UserRoute from './routes/UserRoute.js';
+import ArchiveRoute from './routes/ArchiveRoute.js';
+import AuthRoute from './routes/AuthRoute.js';
+import BroadcastRoute from './routes/BroadcastRoute.js';
 
 /** ********************************************************
  * User Model use for create defaultuser

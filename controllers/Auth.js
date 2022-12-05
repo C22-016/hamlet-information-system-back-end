@@ -1,6 +1,8 @@
 /* eslint-disable consistent-return */
+// import bcrypt from 'bcrypt';
+
 import argon2 from 'argon2';
-import User from '../models/UserModel';
+import User from '../models/UserModel.js';
 
 export const Login = async (req, res) => {
   const user = await User.findOne({
@@ -10,6 +12,8 @@ export const Login = async (req, res) => {
   });
   if (!user) return res.status(404).json({ msg: 'Pengguna tidak ditemukan!' });
 
+  // bcrypt.compare('plainTextPassword', 'hashPassword)
+  // const match = await bcrypt.compare(req.body.password, user.password);
   const match = await argon2.verify(user.password, req.body.password);
   if (!match) return res.status(400).json({ msg: 'Password yang dimasukan salah!' });
 

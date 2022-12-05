@@ -1,6 +1,7 @@
 /* eslint-disable consistent-return */
+
 import dotenv from 'dotenv';
-import User from '../models/UserModel';
+import User from '../models/UserModel.js';
 
 dotenv.config();
 

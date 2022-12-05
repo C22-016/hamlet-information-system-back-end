@@ -5,8 +5,8 @@ import {
   createArchive,
   updateArchive,
   deleteArchive,
-} from '../controllers/Archives';
-import { verifyUser, adminAndStafOnly } from '../middleware/AuthUser';
+} from '../controllers/Archives.js';
+import { verifyUser, adminAndStafOnly } from '../middleware/AuthUser.js';
 
 const router = express.Router();
 
