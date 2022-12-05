@@ -4,21 +4,24 @@
   <img src="./public/logo-his.jpg" width="200">
 </p>
 
+Hamlet Information System (HIS) adalah sebuah aplikasi berbasis
+Web yang ditujukan untuk masyarakat lingkungan RT/RW. HIS merupakan sebuah solusi bagi lingkungan RT/RW yang memberikan fleksibilitas terhadap masyarakat sekitar dengan memberikan solusi berupa Online Base, terhadap aduan, kendala lingkungan, kejadian-kejadian Darurat, dan sebagainya.
 
- Hamlet Information System (HIS) adalah sebuah aplikasi berbasis
- Web yang ditujukan untuk masyarakat lingkungan RT/RW. HIS merupakan sebuah solusi bagi lingkungan RT/RW yang memberikan fleksibilitas terhadap masyarakat sekitar dengan memberikan solusi berupa Online Base, terhadap aduan, kendala lingkungan, kejadian-kejadian Darurat, dan sebagainya.
- 
 ## Project Status
-Saat ini Project ini masih dalam tahap Pengembangan, dan akan terus dikembangkan dari segi Fitur dan Fungsionalitas. 
- 
+
+Saat ini Project ini masih dalam tahap Pengembangan, dan akan terus dikembangkan dari segi Fitur dan Fungsionalitas.
+
 ## Installation and Setup Instructions
-Untuk menjalankan Project ini kamu bisa, Download or Clone Repo ini. Kamu akan membutuhkan `node` and `npm` yang diinstal secara Global di Mesin kamu. Langkah awal jalankan perintah `npm install` di terminal Project kamu.
+
+Untuk menjalankan Project ini kamu bisa, Download or Clone Repo ini. Kamu akan membutuhkan `node` and `npm` yang diinstal secara Global di Mesin kamu. Langkah awal jalankan perintah `npm install` di terminal Project kamu. Setelah semua package terinstall lalu jalankan `npm run create-admin` untuk untuk membuat admin user default. Setup file default user ada di `./config/defaultUser.js`.
 
 #### How to Run:
-- `npm run start` Untuk menjalankan Server Back-End ini.
+
+- `npm run server` Untuk menjalankan Server Back-End ini.
 
 ## Tools Stack
-- Package Main:  
+
+- Package Main:
   - [Express.js](https://expressjs.com/)
   - [Express File Upload](https://www.npmjs.com/package/express-fileupload)
   - [Express Session](https://www.npmjs.com/package/express-session)

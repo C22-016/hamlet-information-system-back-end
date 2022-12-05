@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 /* eslint-disable new-cap */
 
 import express from 'express';
@@ -15,15 +14,8 @@ import ArchiveRoute from './routes/ArchiveRoute.js';
 import AuthRoute from './routes/AuthRoute.js';
 import BroadcastRoute from './routes/BroadcastRoute.js';
 
-/** ********************************************************
- * User Model use for create defaultuser
- * You can disable if admin account already exists in the database
- * */
-import defaultUser from './config/defaultUser';
-import Users from './models/UserModel';
-/** ***************************************************** */
-
 dotenv.config();
+
 const app = express();
 
 const sessionStore = SequelizeStore(session.Store);
@@ -43,7 +35,7 @@ app.use(session({
 
 app.use(cors({
   credentials: true,
-  origin: 'http://localhost:3000',
+  origin: process.env.CORS_ORIGIN,
 }));
 
 app.use(express.json());
@@ -55,24 +47,10 @@ app.use(ArchiveRoute);
 app.use(AuthRoute);
 app.use(BroadcastRoute);
 
-/** Code for created table session */
-// store.sync();
-
-/** Code for Sync the databases */
+/** Code for Sync the database */
 db.sync()
   .then(() => console.log('Database sync was successful'))
   .catch((error) => console.log(error));
-
-/** ******************************************************************
- * Create Default User { user: admin , password: 123456}
- * Disable this code if admin account is already available in the database.
- * */
-
-// Users.create(defaultUser)
-//   .then(() => console.log('default user has been created successfully'))
-//   .catch((error) => console.log(error));
-
-/** ****************************************************************** */
 
 app.listen(process.env.APP_PORT, () => {
   console.log('Server up and running...');

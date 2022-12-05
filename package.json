@@ -5,7 +5,8 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon --experimental-modules --es-module-specifier-resolution=node index.js",
+    "create-admin": "node ./config/defaultUser.js",
+    "server": "nodemon --experimental-modules --es-module-specifier-resolution=node index.js",
     "test": "node index.js",
     "lint": "npx eslint ./config/ ./controllers/ ./middleware/ ./models/ ./routes/ ./index.js"
   },
