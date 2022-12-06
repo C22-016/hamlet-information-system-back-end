@@ -3,7 +3,7 @@ POST http://localhost:5000/login
 Content-Type: application/json
 
 {
-      "email": "admin@gmail.com",
+      "email": "user@gmail.com",
       "password": "123456"
 }
 
@@ -110,3 +110,26 @@ DELETE http://localhost:5000/broadcast/notif-Cc8HrZBNc
 ###
 // Delete all Broadcast
 DELETE http://localhost:5000/broadcast
+
+###
+// Create Event
+POST http://localhost:5000/events
+Content-Type: application/json
+
+{
+      "name": "Kerja Bakti",
+      "desc": "Jangan Lupa untuk kegiatan kerja bakti esok hari",
+      "date": "Jangan Lupa untuk kegiatan kerja bakti esok hari"
+}
+
+###
+// Get all Events
+GET http://localhost:5000/events
+
+###
+// Get single Event
+GET http://localhost:5000/events/3a55440d-6e7e-4074-8eca-9f2ab01696aa
+
+###
+// Deleted Event
+DELETE http://localhost:5000/events/3a55440d-6e7e-4074-8eca-9f2ab01696aa

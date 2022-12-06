@@ -87,7 +87,7 @@ export const updateUser = async (req, res) => {
   });
   if (!user) return res.status(404).json({ msg: 'Pengguna tidak ditemukan!' });
 
-  // if (req.files === null) return res.status(400).json({ msg: 'Gambar tidak boleh kosong!' });
+  if (req.files === null) return res.status(400).json({ msg: 'Gambar tidak boleh kosong!' });
 
   let fileName = '';
   if (req.files === null) {

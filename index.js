@@ -13,6 +13,7 @@ import UserRoute from './routes/UserRoute.js';
 import ArchiveRoute from './routes/ArchiveRoute.js';
 import AuthRoute from './routes/AuthRoute.js';
 import BroadcastRoute from './routes/BroadcastRoute.js';
+import EventRoute from './routes/EventRoute.js';
 
 dotenv.config();
 
@@ -46,6 +47,7 @@ app.use(UserRoute);
 app.use(ArchiveRoute);
 app.use(AuthRoute);
 app.use(BroadcastRoute);
+app.use(EventRoute);
 
 /** Code for Sync the database */
 // db.sync()
