@@ -103,5 +103,9 @@ Content-Type: application/json
 GET http://localhost:5000/broadcast
 
 ###
+// Delete Broadcast By Id
+DELETE http://localhost:5000/broadcast/notif-Cc8HrZBNc
+
+###
 // Delete all Broadcast
 DELETE http://localhost:5000/broadcast
