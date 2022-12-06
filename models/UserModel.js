@@ -42,6 +42,10 @@ const Users = db.define('users', {
       notEmpty: true,
     },
   },
+  gender: DataTypes.STRING,
+  address: DataTypes.TEXT,
+  rt: DataTypes.STRING,
+  telp: DataTypes.STRING,
   image: DataTypes.STRING,
   url: DataTypes.STRING,
 }, {

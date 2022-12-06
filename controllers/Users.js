@@ -9,7 +9,7 @@ import User from '../models/UserModel.js';
 export const getUsers = async (req, res) => {
   try {
     const response = await User.findAll({
-      attributes: ['uuid', 'name', 'email', 'role'],
+      attributes: ['uuid', 'name', 'email', 'gender', 'address', 'rt', 'telp', 'role'],
     });
     res.status(200).json(response);
   } catch (error) {
@@ -20,7 +20,7 @@ export const getUsers = async (req, res) => {
 export const getUserById = async (req, res) => {
   try {
     const response = await User.findOne({
-      attributes: ['uuid', 'name', 'email', 'role', 'image', 'url'],
+      attributes: ['uuid', 'name', 'email', 'gender', 'address', 'rt', 'telp', 'role', 'image', 'url'],
       where: {
         uuid: req.params.id,
       },
@@ -34,6 +34,7 @@ export const getUserById = async (req, res) => {
 export const createUser = async (req, res) => {
   // Field Image & URL Image
   if (req.files === null) return res.status(400).json({ msg: 'Gambar belum diunggah!' });
+
   const file = req.files.image;
   const fileSize = file.data.length;
   const ext = path.extname(file.name);
@@ -47,7 +48,7 @@ export const createUser = async (req, res) => {
 
   // Field others
   const {
-    name, email, password, confPassword, role,
+    name, email, gender, address, rt, telp, password, confPassword, role,
   } = req.body;
 
   if (password !== confPassword) return res.status(400).json({ msg: 'Kata Sandi dan Konfirmasi Kata Sandi tidak cocok!' });
@@ -62,6 +63,10 @@ export const createUser = async (req, res) => {
       await User.create({
         name,
         email,
+        gender,
+        address,
+        rt,
+        telp,
         password: hashPassword,
         role,
         image: fileName,
@@ -82,7 +87,7 @@ export const updateUser = async (req, res) => {
   });
   if (!user) return res.status(404).json({ msg: 'Pengguna tidak ditemukan!' });
 
-  if (req.files === null) return res.status(400).json({ msg: 'Gambar tidak boleh kosong!' });
+  // if (req.files === null) return res.status(400).json({ msg: 'Gambar tidak boleh kosong!' });
 
   let fileName = '';
   if (req.files === null) {
@@ -108,7 +113,7 @@ export const updateUser = async (req, res) => {
 
   const url = `${req.protocol}://${req.get('host')}/profiles/${fileName}`;
   const {
-    name, email, password, confPassword, role,
+    name, email, gender, address, rt, telp, password, confPassword, role,
   } = req.body;
 
   let hashPassword;
@@ -124,6 +129,10 @@ export const updateUser = async (req, res) => {
     await User.update({
       name,
       email,
+      gender,
+      address,
+      rt,
+      telp,
       password: hashPassword,
       role,
       image: fileName,

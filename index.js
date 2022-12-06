@@ -48,9 +48,9 @@ app.use(AuthRoute);
 app.use(BroadcastRoute);
 
 /** Code for Sync the database */
-db.sync()
-  .then(() => console.log('Database sync was successful'))
-  .catch((error) => console.log(error));
+// db.sync()
+//   .then(() => console.log('Database sync was successful'))
+//   .catch((error) => console.log(error));
 
 app.listen(process.env.APP_PORT, () => {
   console.log('Server up and running...');

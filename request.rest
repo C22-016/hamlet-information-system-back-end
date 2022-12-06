@@ -27,7 +27,7 @@ Content-Type: application/json
       "password": "123456",
       "confPassword": "123456",
       "role": "staf",
-      "image": "profile.jpg"
+      "image": "public/profiles/default-user.jpg"
 }
 
 ###
@@ -63,7 +63,8 @@ Content-Type: application/json
 
 {
       "name": "Data Kelurahan Admin",
-      "link": "https://drive.google.com/data-kelurahan"
+      "link": "https://drive.google.com/data-kelurahan",
+      "desc": "Ini adalah sebuah deskripsi dari tabel data arsip."
 }
 
 ###

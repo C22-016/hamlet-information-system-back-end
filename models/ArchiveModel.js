@@ -28,6 +28,13 @@ const Archives = db.define('archive', {
       notEmpty: true,
     },
   },
+  desc: {
+    type: DataTypes.TEXT,
+    allowNull: false,
+    validate: {
+      notEmpty: true,
+    },
+  },
   userId: {
     type: DataTypes.INTEGER,
     allowNull: false,

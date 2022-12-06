@@ -1,7 +1,10 @@
 /* eslint-disable no-unused-vars */
 // import bcrypt from 'bcrypt';
 import argon2 from 'argon2';
+import dotenv from 'dotenv';
 import Users from '../models/UserModel.js';
+
+dotenv.config();
 
 // const hashingWithArgon2 = async (plainText) => {
 //   const hashedPalinText = await argon2.hash(plainText);
@@ -13,13 +16,17 @@ import Users from '../models/UserModel.js';
 //   return hashedPalinText;
 // };
 
+const imageName = 'default-user.jpg';
+const urlImageDefault = `${process.env.URL_IMAGE_DEFAULT}/profiles/${imageName}`;
+
 const dataUser = {
   name: 'admin',
   email: 'admin@gmail.com',
   password: await argon2.hash('123456'),
   confPassword: await argon2.hash('123456'),
   role: 'admin',
-  image: 'profile.jpg',
+  image: imageName,
+  url: urlImageDefault,
 };
 
 const InsetDataToTable = async (table, value) => {
