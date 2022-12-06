@@ -3,10 +3,10 @@
 import argon2 from 'argon2';
 import Users from '../models/UserModel.js';
 
-const hashingWithArgon2 = async (plainText) => {
-  const hashedPalinText = await argon2.hash(plainText);
-  return hashedPalinText;
-};
+// const hashingWithArgon2 = async (plainText) => {
+//   const hashedPalinText = await argon2.hash(plainText);
+//   return hashedPalinText;
+// };
 
 // const hashingWithBcrypt = async (plainText, saltRounds) => {
 //   const hashedPalinText = await bcrypt.hash(plainText, saltRounds);
@@ -16,8 +16,8 @@ const hashingWithArgon2 = async (plainText) => {
 const dataUser = {
   name: 'admin',
   email: 'admin@gmail.com',
-  password: hashingWithArgon2('123456'),
-  confPassword: hashingWithArgon2('123456'),
+  password: await argon2.hash('123456'),
+  confPassword: await argon2.hash('123456'),
   role: 'admin',
   image: 'profile.jpg',
 };
@@ -27,10 +27,10 @@ const InsetDataToTable = async (table, value) => {
     await table.sync();
     await table.create(value);
     console.log('Data Sync has been created successfully');
+    console.log(`User "${value.name}" telah dibuat...`);
   } catch (error) {
-    console.log(error.message);
+    console.log(`Terjadi kesalahan : ${error.message}`);
   }
 };
 
 InsetDataToTable(Users, dataUser);
-console.log('User admin telah dibuat...');
