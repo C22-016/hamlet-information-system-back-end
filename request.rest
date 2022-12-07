@@ -3,7 +3,7 @@ POST http://localhost:5000/login
 Content-Type: application/json
 
 {
-      "email": "admin@gmail.com",
+      "email": "user@gmail.com",
       "password": "123456"
 }
 
@@ -61,7 +61,7 @@ POST http://localhost:5000/archives
 Content-Type: application/json
 
 {
-      "name": "Data Kelurahan Admin",
+      "name": "Data dari Staf 2",
       "link": "https://drive.google.com/data-kelurahan",
       "desc": "Ini adalah sebuah deskripsi dari tabel data arsip."
 }
@@ -72,21 +72,22 @@ GET http://localhost:5000/archives
 
 ###
 // Get single Archive
-GET http://localhost:5000/archives/0fbffde2-6699-4247-bd58-44c4d18fab03
+GET http://localhost:5000/archives/aeb94996-1e5e-44f9-9eac-5d9e489b2c6f
 
 ###
 // Updated archive
-PATCH http://localhost:5000/archives/7c1fb7a2-8eab-4c5d-b057-f807f8081cf2
+PATCH http://localhost:5000/archives/aeb94996-1e5e-44f9-9eac-5d9e489b2c6f
 Content-Type: application/json
 
 {
-      "name": "Data Kelurahan Admin Update 2",
-      "link": "https://drive.google.com/data-kelurahan"
+      "name": "Data Update an Staf punya admin",
+      "link": "https://drive.google.com/data-kelurahan",
+      "desc": "Update desc"
 }
 
 ###
 // Deleted archive
-DELETE http://localhost:5000/archives/f87275a8-bd0a-4f03-99a5-9d4f5d472fd0
+DELETE http://localhost:5000/archives/aeb94996-1e5e-44f9-9eac-5d9e489b2c6f
 
 ###
 // Create Broadcast
