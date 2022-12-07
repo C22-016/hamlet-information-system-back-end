@@ -1,6 +1,7 @@
 /* eslint-disable consistent-return */
 
 import dotenv from 'dotenv';
+import { nanoid } from 'nanoid';
 import Broadcast from '../models/BroadcastModel.js';
 
 dotenv.config();
@@ -9,8 +10,10 @@ export const createBroadcast = async (req, res) => {
   const { title, content } = req.body;
   try {
     await Broadcast.create({
+      broadcast_id: `notif-${nanoid(12)}`,
       title,
       content,
+      userId: req.userId,
     });
     res.status(201).json({ message: 'Broadcast berhasil ditambahkan!' });
   } catch (error) {
@@ -38,7 +41,7 @@ export const deleteBroadcastById = async (req, res) => {
     });
     if (!broadcast) return res.status(404).json({ message: 'Notifikasi tidak ditemukan' });
     if (req.role === process.env.LOW_ACCESS) {
-      return res.status(403).json({
+      res.status(403).json({
         message: 'User tidak di izinkan Delete notif dari database!',
       });
     }
@@ -48,7 +51,7 @@ export const deleteBroadcastById = async (req, res) => {
       },
     });
     return res.status(201).json({
-      message: 'Notifikasi BErhasil dihapaus',
+      message: 'Notifikasi Berhasil dihapaus',
     });
   } catch (error) {
     res.status(500).json({ message: error.message });

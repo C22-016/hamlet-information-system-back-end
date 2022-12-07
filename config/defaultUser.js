@@ -19,7 +19,10 @@ dotenv.config();
 const imageName = process.env.IMAGE_DEFAULT_USER;
 const urlImageDefault = `${process.env.URL_IMAGE_DEFAULT}/profiles/${imageName}`;
 
-const dataUser = {
+/* ============================================================================================= */
+/* =================[ Default-Account ( admin, staf and user ) ]================================ */
+
+const accountAdmin = {
   name: 'admin',
   email: 'admin@gmail.com',
   password: await argon2.hash('123456'),
@@ -28,16 +31,42 @@ const dataUser = {
   image: imageName,
   url: urlImageDefault,
 };
+const accountStaf = {
+  name: 'staf',
+  email: 'staf@gmail.com',
+  password: await argon2.hash('123456'),
+  confPassword: await argon2.hash('123456'),
+  role: 'staf',
+  image: imageName,
+  url: urlImageDefault,
+};
+const accountUser = {
+  name: 'user',
+  email: 'user@gmail.com',
+  password: await argon2.hash('123456'),
+  confPassword: await argon2.hash('123456'),
+  role: 'user',
+  image: imageName,
+  url: urlImageDefault,
+};
+
+/* ============================================================================================= */
+/* ============================================================================================= */
 
 const InsetDataToTable = async (table, value) => {
   try {
     await table.sync();
     await table.create(value);
-    console.log('Data Sync has been created successfully');
-    console.log(`User "${value.name}" telah dibuat...`);
+    console.log(`Account default "${value.name}" telah dibuat....`);
   } catch (error) {
     console.log(`Terjadi kesalahan : ${error.message}`);
   }
 };
+setTimeout(() => {
+  console.log('Data Sync has been created successfully');
+  console.log('Tekan [ CTRL + C ] untuk keluar');
+}, 4000);
 
-InsetDataToTable(Users, dataUser);
+InsetDataToTable(Users, accountAdmin);
+InsetDataToTable(Users, accountStaf);
+InsetDataToTable(Users, accountUser);
