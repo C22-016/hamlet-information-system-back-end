@@ -3,7 +3,7 @@ POST http://localhost:5000/login
 Content-Type: application/json
 
 {
-      "email": "user@gmail.com",
+      "email": "admin@gmail.com",
       "password": "123456"
 }
 
@@ -22,12 +22,11 @@ POST http://localhost:5000/users
 Content-Type: application/json
 
 {
-      "name": "staf",
-      "email": "staf@gmail.com",
+      "name": "Khoirul Husen",
+      "email": "hoirul@gmail.com",
       "password": "123456",
       "confPassword": "123456",
-      "role": "staf",
-      "image": "public/profiles/default-user.jpg"
+      "role": "admin"
 }
 
 ###
@@ -36,7 +35,7 @@ GET http://localhost:5000/users
 
 ###
 // Get single user
-GET http://localhost:5000/users/f87a0d32-93cc-4540-9a87-a82cfe951829
+GET http://localhost:5000/users/0387bae1-5134-4bdb-95eb-4c5dab64affe
 
 ###
 // Updated user
@@ -53,7 +52,7 @@ Content-Type: application/json
 
 ###
 // Deleted user
-DELETE http://localhost:5000/users/f87a0d32-93cc-4540-9a87-a82cfe951829
+DELETE http://localhost:5000/users/c3d6686a-ef76-471d-bda6-0b33b140efc1
 
 
 ###

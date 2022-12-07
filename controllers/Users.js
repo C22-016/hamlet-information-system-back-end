@@ -4,7 +4,10 @@
 import argon2 from 'argon2';
 import path from 'path';
 import fs from 'fs';
+import dotenv from 'dotenv';
 import User from '../models/UserModel.js';
+
+dotenv.config();
 
 export const getUsers = async (req, res) => {
   try {
@@ -19,6 +22,13 @@ export const getUsers = async (req, res) => {
 
 export const getUserById = async (req, res) => {
   try {
+    const user = await User.findOne({
+      where: {
+        uuid: req.params.id,
+      },
+    });
+    if (!user) return res.status(404).json({ msg: 'Data pengguna tidak ditemukan!' });
+
     const response = await User.findOne({
       attributes: ['uuid', 'name', 'email', 'gender', 'address', 'rt', 'telp', 'role', 'image', 'url'],
       where: {
@@ -103,8 +113,12 @@ export const updateUser = async (req, res) => {
 
     if (fileSize > 2000000) return res.status(422).json({ msg: 'Ukuran gambar harus dibawah 2 MB!' });
 
-    const filePath = `./public/profiles/${user.image}`;
-    fs.unlinkSync(filePath);
+    if (user.image === process.env.IMAGE_DEFAULT_USER) {
+      console.log('User default images are safe!');
+    } else {
+      const filePath = `./public/profiles/${user.image}`;
+      fs.unlinkSync(filePath);
+    }
 
     file.mv(`./public/profiles/${fileName}`, (err) => {
       if (err) return res.status(500).json({ msg: err.message });
@@ -157,8 +171,12 @@ export const deleteUser = async (req, res) => {
   if (!user) return res.status(404).json({ msg: 'Pengguna tidak ditemukan!' });
 
   try {
-    const filePath = `./public/profiles/${user.image}`;
-    fs.unlinkSync(filePath);
+    if (user.image === process.env.IMAGE_DEFAULT_USER) {
+      console.log('User default images are safe!');
+    } else {
+      const filePath = `./public/profiles/${user.image}`;
+      fs.unlinkSync(filePath);
+    }
 
     await User.destroy({
       where: {

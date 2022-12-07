@@ -16,7 +16,7 @@ dotenv.config();
 //   return hashedPalinText;
 // };
 
-const imageName = 'default-user.jpg';
+const imageName = process.env.IMAGE_DEFAULT_USER;
 const urlImageDefault = `${process.env.URL_IMAGE_DEFAULT}/profiles/${imageName}`;
 
 const dataUser = {

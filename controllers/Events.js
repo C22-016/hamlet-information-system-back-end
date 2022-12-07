@@ -134,8 +134,12 @@ export const updateEvent = async (req, res) => {
 
     if (fileSize > 2000000) return res.status(422).json({ msg: 'Ukuran poster harus dibawah 2 MB!' });
 
-    const filePath = `./public/events/${event.poster}`;
-    fs.unlinkSync(filePath);
+    if (event.image === process.env.IMAGE_DEFAULT_EVENT) {
+      console.log('User default images are safe!');
+    } else {
+      const filePath = `./public/events/${event.poster}`;
+      fs.unlinkSync(filePath);
+    }
 
     file.mv(`./public/events/${fileName}`, (err) => {
       if (err) return res.status(500).json({ msg: err.message });
@@ -174,8 +178,12 @@ export const deleteEvent = async (req, res) => {
   if (!event) return res.status(404).json({ msg: 'Event tidak ditemukan!' });
 
   try {
-    const filePath = `./public/events/${event.poster}`;
-    fs.unlinkSync(filePath);
+    if (event.image === process.env.IMAGE_DEFAULT_EVENT) {
+      console.log('User default images are safe!');
+    } else {
+      const filePath = `./public/events/${event.poster}`;
+      fs.unlinkSync(filePath);
+    }
 
     await Event.destroy({
       where: {
