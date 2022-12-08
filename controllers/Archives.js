@@ -21,12 +21,9 @@ export const getArchives = async (req, res) => {
     } else {
       response = await Archive.findAll({
         attributes: ['uuid', 'name', 'link', 'desc', 'createdAt', 'updatedAt'],
-        where: {
-          userId: req.userId,
-        },
         include: [{
           model: User,
-          attributes: ['name', 'email'],
+          attributes: ['name', 'email', 'role'],
         }],
       });
     }
@@ -60,12 +57,9 @@ export const getArchiveById = async (req, res) => {
     } else {
       response = await Archive.findOne({
         attributes: ['uuid', 'name', 'link', 'desc', 'createdAt', 'updatedAt'],
-        where: {
-          [Op.and]: [{ id: archive.id }, { userId: req.userId }],
-        },
         include: [{
           model: User,
-          attributes: ['name', 'email'],
+          attributes: ['name', 'email', 'role'],
         }],
       });
     }
