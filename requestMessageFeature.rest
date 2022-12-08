@@ -1,0 +1,76 @@
+// Login user
+POST http://localhost:5000/login
+Content-Type: application/json
+
+{
+  "email": "admin@gmail.com",
+  "password": "123456"
+}
+
+###
+// Get info user Login
+GET http://localhost:5000/me
+
+###
+// Logout user
+DELETE http://localhost:5000/logout
+
+
+##################################################################################################################
+
+###
+// Send Message [ user ]
+POST http://localhost:5000/message
+Content-Type: application/json
+
+{
+  "messageType": "Pengaduan", 
+  "messageContent": "Jalan di rw 2 tertutup longsor, mohon untuk segera mengumumkan agar melakukan perbaikan"
+}
+
+
+###
+// Balas Pesan dengan Param "message_id" [ admin dan Staf only ]
+POST http://localhost:5000/message/reply/message--7yUeGAvtNGZ
+Content-Type: application/json
+
+{
+  "messageReply": "Saran Akan segera kami tangani"
+}
+
+##################################################################################################################
+
+###
+// Get All Message [ all role ]
+GET http://localhost:5000/message
+
+###
+// Get Message By messsageid [ all role ]
+GET http://localhost:5000/message/message--7yUeGAvtNGZ
+
+###
+// pesan yg sudah dibalas [ all role ]
+GET http://localhost:5000/msg-finished
+
+###
+// Pesan yang belum di balas [ all role ]
+GET http://localhost:5000/message/unfinished
+
+
+
+############################[ DELETE - untuk admin only ]#######################################################
+###
+// Delete message by message Id [ admin staf ]
+DELETE  http://localhost:5000/message/message-QausDF2YtC96
+
+###
+// Delete Semua Pesan
+DELETE  http://localhost:5000/message
+
+###
+// Delete Semua Pesan yang sudah titangani
+DELETE  http://localhost:5000/msg-finished
+
+###
+// Delete Semua Pesan yang belum ditangani
+DELETE  http://localhost:5000/msg-unfinished

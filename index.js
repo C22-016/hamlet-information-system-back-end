@@ -14,6 +14,7 @@ import ArchiveRoute from './routes/ArchiveRoute.js';
 import AuthRoute from './routes/AuthRoute.js';
 import BroadcastRoute from './routes/BroadcastRoute.js';
 import EventRoute from './routes/EventRoute.js';
+import MessageRoute from './routes/MessageRoute.js';
 
 dotenv.config();
 
@@ -48,6 +49,7 @@ app.use(ArchiveRoute);
 app.use(AuthRoute);
 app.use(BroadcastRoute);
 app.use(EventRoute);
+app.use(MessageRoute);
 
 /**
  * db.sync({ force: true }) - Untuk DROP TABLE dan Membuat tabel baru

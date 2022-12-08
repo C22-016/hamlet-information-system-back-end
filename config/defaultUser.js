@@ -65,7 +65,7 @@ const InsetDataToTable = async (table, value) => {
 setTimeout(() => {
   console.log('Data Sync has been created successfully');
   console.log('Tekan [ CTRL + C ] untuk keluar');
-}, 4000);
+}, 3000);
 
 InsetDataToTable(Users, accountAdmin);
 InsetDataToTable(Users, accountStaf);
