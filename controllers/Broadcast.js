@@ -7,8 +7,8 @@ import Broadcast from '../models/BroadcastModel.js';
 dotenv.config();
 
 export const createBroadcast = async (req, res) => {
-  const { title, content } = req.body;
   try {
+    const { title, content } = req.body;
     await Broadcast.create({
       broadcast_id: `notif-${nanoid(12)}`,
       title,

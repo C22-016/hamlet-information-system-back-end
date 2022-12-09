@@ -71,87 +71,90 @@ export const getEventById = async (req, res) => {
 };
 
 export const createEvent = async (req, res) => {
+  try {
   // Field Image & URL Image
-  if (req.files === null) return res.status(400).json({ msg: 'Poster belum diunggah!' });
+    if (req.files === null) return res.status(400).json({ msg: 'Poster belum diunggah!' });
 
-  const file = req.files.poster;
-  const fileSize = file.data.length;
-  const ext = path.extname(file.name);
-  const fileName = file.md5 + ext;
-  const url = `${req.protocol}://${req.get('host')}/events/${fileName}`;
-  const allowedType = ['.png', '.jpg', '.jpeg'];
-
-  if (!allowedType.includes(ext.toLowerCase())) return res.status(422).json({ msg: 'Tipe poster tidak sesuai!' });
-
-  if (fileSize > 2000000) return res.status(422).json({ msg: 'Ukuran poster harus dibawah 2 MB!' });
-
-  // Field others
-  const {
-    name, desc, date,
-  } = req.body;
-
-  // If validation all success
-  file.mv(`./public/events/${fileName}`, async (err) => {
-    if (err) return res.status(500).json({ msg: err.message });
-
-    try {
-      await Event.create({
-        name,
-        desc,
-        date,
-        poster: fileName,
-        url,
-        userId: req.userId,
-      });
-      res.status(201).json({ msg: 'Berhasil menambahkan event!' });
-    } catch (error) {
-      res.status(400).json({ msg: error.message });
-    }
-  });
-};
-
-export const updateEvent = async (req, res) => {
-  const event = await Event.findOne({
-    where: {
-      uuid: req.params.id,
-    },
-  });
-  if (!event) return res.status(404).json({ msg: 'Event tidak ditemukan!' });
-
-  if (req.files === null) return res.status(400).json({ msg: 'Poster tidak boleh kosong!' });
-
-  let fileName = '';
-  if (req.files === null) {
-    fileName = Event.poster;
-  } else {
     const file = req.files.poster;
     const fileSize = file.data.length;
     const ext = path.extname(file.name);
-    fileName = file.md5 + ext;
+    const fileName = file.md5 + ext;
+    const url = `${req.protocol}://${req.get('host')}/events/${fileName}`;
     const allowedType = ['.png', '.jpg', '.jpeg'];
 
     if (!allowedType.includes(ext.toLowerCase())) return res.status(422).json({ msg: 'Tipe poster tidak sesuai!' });
 
     if (fileSize > 2000000) return res.status(422).json({ msg: 'Ukuran poster harus dibawah 2 MB!' });
 
-    if (event.image === process.env.IMAGE_DEFAULT_EVENT) {
-      console.log('User default images are safe!');
+    // Field others
+    const {
+      name, desc, date,
+    } = req.body;
+
+    // If validation all success
+    file.mv(`./public/events/${fileName}`, async (err) => {
+      if (err) return res.status(500).json({ msg: err.message });
+      try {
+        await Event.create({
+          name,
+          desc,
+          date,
+          poster: fileName,
+          url,
+          userId: req.userId,
+        });
+        res.status(201).json({ msg: 'Berhasil menambahkan event!' });
+      } catch (error) {
+        res.status(400).json({ msg: error.message });
+      }
+    });
+  } catch (error) {
+    res.status(400).json({ msg: error.message });
+  }
+};
+
+export const updateEvent = async (req, res) => {
+  try {
+    const event = await Event.findOne({
+      where: {
+        uuid: req.params.id,
+      },
+    });
+    if (!event) return res.status(404).json({ msg: 'Event tidak ditemukan!' });
+
+    if (req.files === null) return res.status(400).json({ msg: 'Poster tidak boleh kosong!' });
+
+    let fileName = '';
+    if (req.files === null) {
+      fileName = Event.poster;
     } else {
-      const filePath = `./public/events/${event.poster}`;
-      fs.unlinkSync(filePath);
+      const file = req.files.poster;
+      const fileSize = file.data.length;
+      const ext = path.extname(file.name);
+      fileName = file.md5 + ext;
+      const allowedType = ['.png', '.jpg', '.jpeg'];
+
+      if (!allowedType.includes(ext.toLowerCase())) return res.status(422).json({ msg: 'Tipe poster tidak sesuai!' });
+
+      if (fileSize > 2000000) return res.status(422).json({ msg: 'Ukuran poster harus dibawah 2 MB!' });
+
+      if (event.image === process.env.IMAGE_DEFAULT_EVENT) {
+        console.log('User default images are safe!');
+      } else {
+        const filePath = `./public/events/${event.poster}`;
+        fs.unlinkSync(filePath);
+      }
+
+      file.mv(`./public/events/${fileName}`, (err) => {
+        if (err) return res.status(500).json({ msg: err.message });
+      });
     }
 
-    file.mv(`./public/events/${fileName}`, (err) => {
-      if (err) return res.status(500).json({ msg: err.message });
-    });
-  }
+    const url = `${req.protocol}://${req.get('host')}/events/${fileName}`;
+    const {
+      name, desc, date,
+    } = req.body;
 
-  const url = `${req.protocol}://${req.get('host')}/events/${fileName}`;
-  const {
-    name, desc, date,
-  } = req.body;
-
-  try {
     await Event.update({
       name,
       desc,
@@ -170,14 +173,14 @@ export const updateEvent = async (req, res) => {
 };
 
 export const deleteEvent = async (req, res) => {
-  const event = await Event.findOne({
-    where: {
-      uuid: req.params.id,
-    },
-  });
-  if (!event) return res.status(404).json({ msg: 'Event tidak ditemukan!' });
-
   try {
+    const event = await Event.findOne({
+      where: {
+        uuid: req.params.id,
+      },
+    });
+    if (!event) return res.status(404).json({ msg: 'Event tidak ditemukan!' });
+
     if (event.image === process.env.IMAGE_DEFAULT_EVENT) {
       console.log('User default images are safe!');
     } else {

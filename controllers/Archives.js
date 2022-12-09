@@ -70,8 +70,8 @@ export const getArchiveById = async (req, res) => {
 };
 
 export const createArchive = async (req, res) => {
-  const { name, link, desc } = req.body;
   try {
+    const { name, link, desc } = req.body;
     await Archive.create({
       name,
       link,

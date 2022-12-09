@@ -10,9 +10,10 @@ dotenv.config();
 
 // [ kirim  pesan ] - user only
 export const sendMessage = async (req, res) => {
-  if (req.role !== process.env.LOW_ACCESS) return res.status(404).json({ message: 'Hanya Role User Yang dapat mengirim pesan' });
-  const { messageType, messageContent } = req.body;
   try {
+    if (req.role !== process.env.LOW_ACCESS) return res.status(404).json({ message: 'Hanya Role User Yang dapat mengirim pesan' });
+    const { messageType, messageContent } = req.body;
+
     const senderInfo = await Users.findOne({
       attributes: ['uuid', 'name'],
       where: { id: req.userId },
@@ -33,8 +34,8 @@ export const sendMessage = async (req, res) => {
 
 //  [ balas pesan ] - admin and staf only
 export const replyMessageByMessageId = async (req, res) => {
-  const { messageReply } = req.body;
   try {
+    const { messageReply } = req.body;
     const pesan = await Message.findOne({
       where: {
         message_id: req.params.messageId,
