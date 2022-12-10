@@ -12,7 +12,7 @@ dotenv.config();
 export const getUsers = async (req, res) => {
   try {
     const response = await User.findAll({
-      attributes: ['uuid', 'name', 'email', 'gender', 'address', 'rt', 'telp', 'role'],
+      attributes: ['uuid', 'name', 'email', 'gender', 'address', 'rt', 'telp', 'role', 'url'],
     });
     res.status(200).json(response);
   } catch (error) {
